@@ -113,18 +113,19 @@ def main():
 			break
 		segsN += Ssize
 		degSegs.append(S)
-	n = max(nN - segsN, len(degSegs))
 	if shouldShuffle:
 		rnd.shuffle(degSegs)
-	positions = getDegPositions(n, len(degSegs))
+	numDegSegs = len(degSegs)
+	n = max(numDegSegs, nN-segsN)
+	positions = getDegPositions(n, numDegSegs)
 
 	#
 	# Print out the EDS
 	#
 	i = 0
+	j = 0
 	seq = []
-	numDegSegs = len(degSegs)
-	while i < n and len(positions) > 0:
+	while len(positions) > 0:
 		if i == positions[0]:
 			seq.append('{' + ','.join(degSegs[0]) + '}')
 			del positions[0]
@@ -133,9 +134,13 @@ def main():
 		else:
 			strLen = positions[0] - i
 			seq.append(getRandSeq(strLen))
+			j += strLen
 			i += strLen
-	seq.append(getRandSeq(n + numDegSegs - i))
-	print ''.join(seq)
+	remaining = getRandSeq(nN-segsN-j)
+	if len(remaining) > 0:
+		print remaining[0:int(0.5 * len(remaining))] + ''.join(seq) + remaining[int(0.5 * len(remaining)):]
+	else:
+		print ''.join(seq)
 
 if __name__ == '__main__':
 	main()
