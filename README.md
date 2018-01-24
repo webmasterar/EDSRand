@@ -20,15 +20,38 @@ Optional parameters include:
 * --S_max The maximum size (number of strings) in a degenerate segment (default=2)
 * --L_max The maximum length of each string in a degenerate segment (default=1)
 
-## findEDSN
+## SynthesiseRandomEDS
 
-Also included is a little tool (findEDSN) which you can use to find the total size
-of an EDS string. Use it like so:
+Generates a random Elastic Degenerate String (EDS) of size n, where degenerate positions count as 1.
+To compile this program:
 
-`python findEDSN.py file.eds`
+`g++ synthesiseRandomEDS.cpp -o synthesise -std=c++11`
 
-It will print out N.
+And to run it:
+
+`./synthesise -n <int> -d <int> -Smax <int> -Lmax <int> -o <string>`
+
+The parameters that must be supplied are:
+
+* -n    The size or number of positions in the ED string
+* -d    The percentage of positions in the text which are degenerate
+* -Smax The maximum size of the set at any degenerate position
+* -Lmax The upper bound on length of any string in a degenerate position
+* -o    The desired name of the output file
+
+## getEDSsize
+
+Also included is a little tool (getEDSsize) which you can use to find the number
+of positions (n) and total size (N) of an EDS string (counting degenerate positions
+as 1). Use it like so:
+
+`python getEDSsize.py file.eds`
+
+It will count DNA characters (including 'N') and print out the number of positions
+(n) and total number of characters (N) in the EDS file. e.g.
+
+`n: 9000, N:10000`
 
 ### License
 
-GNU GPL 3.0 (2018) Ahmad Retha
+GNU GPL 3.0 (2018) Ahmad Retha and Fatima Vayani

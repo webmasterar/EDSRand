@@ -7,14 +7,24 @@ if len(sys.argv) == 1:
 	sys.exit(1)
 
 try:
-	i = 0
+	inDegSeg = False
+	n = 0
+	N = 0
 	with open(sys.argv[1], 'r') as f:
 		for line in f:
 			for c in line:
-				if c in ['A','C','G','T']:
-					i += 1
+				if c == '{':
+					inDegSeg = True
+				elif c == '}':
+					inDegSeg = False
+					n += 1
+				elif c in ['A','C','G','T','N']:
+					N += 1
+					if not inDegSeg:
+						n += 1
 except IOError:
 	print 'Error: could not access file'
 	sys.exit(1)
 
-print i
+print "n: %d, N: %d" % (n, N)
+
