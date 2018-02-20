@@ -52,6 +52,8 @@ It will count DNA characters (including 'N') and print out the number of positio
 
 `n: 9000, N:10000`
 
-### License
+### License, e.t.c.
+
+To create EDS files using genomic data (reference sequence + VCF file), please use the tool [EDSO](https://github.com/webmasterar/edso)
 
 GNU GPL 3.0 (2018) Ahmad Retha and Fatima Vayani
